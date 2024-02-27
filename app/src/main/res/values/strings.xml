@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Peliculas</string>
+    <string name="nombre">Nombre: </string>
+    <string name="genero">Genero: </string>
+    <string name="anio">Año: </string>
+    <string name="duracion">Duracion: </string>
+    <string name="perfil">Mi Perfil </string>
+    <string name="salir">Logout </string>
+
+</resources>
