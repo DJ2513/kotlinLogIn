@@ -9,9 +9,11 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -102,6 +104,11 @@ class MenuPrincipal : AppCompatActivity() {
             }
 
         })
+
+        var btnAgregarPeli = findViewById<FloatingActionButton>(R.id.agregar);
+        btnAgregarPeli.setOnClickListener{
+            startActivity(Intent(this, AgregarPeli::class.java))
+        }
     }
 
     public fun llenarLista()

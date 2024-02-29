@@ -7,7 +7,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 
@@ -58,7 +60,31 @@ class Detalle : AppCompatActivity() {
         }
 
         eliminar.setOnClickListener{
+            val builder: AlertDialog.Builder = MaterialAlertDialogBuilder(this)
+            builder.setMessage("¿Estás seguro de que quieres eliminar esta película?")
+                .setPositiveButton("Acpetar") { diallog, id ->
+                    myRef.child(parametros?.getCharSequence("id").toString()).removeValue()
+                        .addOnCompleteListener {
+                            task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(this, "Pelicula Eliminada!", Toast.LENGTH_LONG)
+                                    .show()
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Error: " + task.exception!!.message.toString(),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
 
+                        }
+                }
+                .setNegativeButton("Cancelar"){
+                    dialog, id ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.show()
         }
     }
 
